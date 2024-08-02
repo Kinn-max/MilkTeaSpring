@@ -83,7 +83,6 @@
 .delivery_both{
     padding: 10px;
     display: flex;
-    justify-content: space-between;
 }
 .minus-cart{
     display: flex;

@@ -40,8 +40,8 @@ public class Order {
     @JoinColumn(name = "id_user")
     private User userId;
 
-    @OneToOne
-    @JoinColumn(name = "id_product")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "product_id")
     private Product product;
 
 }

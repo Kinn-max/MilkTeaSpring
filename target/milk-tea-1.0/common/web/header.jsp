@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="com.javaweb.Security.utils.SecurityUtils" %>
 <header>
     <nav class="title">
         <div class="title_center">
             <div class="title_center-all">
-                <a href="index.html">
+                <a href="/home">
                     <div class="img_shop">
                         <img src="img/logo.png" alt="" class="img_shop-picture">
                     </div>
@@ -42,19 +43,47 @@
                     </div>
                     <div class="title_signCart">
                         <div class="title_signCart-user">
+                            <security:authorize access = "isAuthenticated()">
+                                <span class="text_name-user">Xin chao, <%=SecurityUtils.getPrincipal().getUsername()%></span>
+                            </security:authorize>
                             <i class="fa-solid fa-user"></i>
                             <ul class="title_user-list">
+                            <security:authorize access = "isAuthenticated()">
+                                 <li class="title_user-list-li">
+                                        <a  href="<c:url value='#'/>">Thay doi mat khau</a>
+                                 </li>
                                 <li class="title_user-list-li">
-                                    <a href="register">Đăng ký</a>
+                                        <a  href="<c:url value='#'/>">Kiem tra don hang</a>
                                 </li>
                                 <li class="title_user-list-li">
-                                    <a href="sign-in">Đăng nhập</a>
+                                        <a  href="<c:url value='#'/>">Cap nhat thong tin</a>
                                 </li>
+                                <li class="nav-item"><a class="nav-link" href="<c:url value='/logout'/>">Thoát</a></li>
+                            </security:authorize>
+                             <security:authorize access = "isAnonymous()">
+                                 <li class="title_user-list-li">
+                                    <a  href="<c:url value='/register'/>">Đăng ký</a>
+                                </li>
+                                <li class="title_user-list-li">
+                                    <a  href="<c:url value='/sign-in'/>">Đăng nhập</a>
+                                </li>
+                            </security:authorize>
                             </ul>
                         </div>
                         <div class="title_signCart-cart">
                             <i class="fa-solid fa-cart-shopping"></i>
                             <ul class="title_cart-list">
+                            <security:authorize access = "isAnonymous()">
+                                <li class="title_cart-list--all">
+                                        <div class="title_cart-list--name">
+                                            <p style="text-align: center;width: 100%;">Vui lòng đăng nhập để thêm sản phẩm vào giỏ hàng</p>
+                                        </div>
+                                </li>
+                            </security:authorize>
+                            <security:authorize access = "isAuthenticated()">
+                             <c:forEach var="item" items="${}" >
+                                 ${item})
+                             </c:forEach>
                                 <li class="title_cart-list--all">
                                     <div class="title_cart-list--img">
                                         <img src="img/logo.png" alt="">
@@ -74,6 +103,7 @@
                                 <div class="title_cart-list--more">
                                     <a href="">Xem thêm</a>
                                 </div>
+                            </security:authorize>
                             </ul>
                         </div>
                         <div class="title_signCart-bar">

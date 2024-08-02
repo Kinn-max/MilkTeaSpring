@@ -5,11 +5,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Trang chủ</title>
+<title>Cửa hàng kinn</title>
 	<link rel="icon page" type="jpg" href="img/the_end.jpg">
 	<link rel="stylesheet" href="css/main.css">
 	<link rel="stylesheet" href="css/product.css">
 	<link rel="stylesheet" href="css/category.css">
+	<link rel="stylesheet" href="css/cart.css">
 	<link rel="stylesheet" href="Fonsomeone/fontawesome-free-6.2.0/css/all.min.css">
 </head>
 <body>

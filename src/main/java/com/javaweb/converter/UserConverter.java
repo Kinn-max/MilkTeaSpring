@@ -4,6 +4,7 @@ import com.javaweb.dto.UserRequireDTO;
 import com.javaweb.dto.UserResponseDTO;
 import com.javaweb.entity.Role;
 import com.javaweb.entity.User;
+import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -16,8 +17,8 @@ import java.util.List;
 
 @Component
 public class UserConverter {
-//    @Autowired
-//    private PasswordEncoder passwordEncoder;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
     private ModelMapper modelMapper;
@@ -38,8 +39,8 @@ public class UserConverter {
         user.setCreatedBy(userRequireDTO.getFullName());
         // mã hóa
         String password = userRequireDTO.getPassWord();
-//        String encodedPassword = passwordEncoder.encode(password);
-//        user.setPassWord(encodedPassword);
+        String encodedPassword = passwordEncoder.encode(password);
+        user.setPassWord(encodedPassword);
         return user;
     }
 }

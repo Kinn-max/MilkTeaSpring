@@ -5,6 +5,7 @@ import com.javaweb.converter.ProductConverter;
 import com.javaweb.dto.ProductDTO;
 import com.javaweb.entity.Category;
 import com.javaweb.entity.Product;
+import com.javaweb.entity.Topping;
 import com.javaweb.repository.ProductRepository;
 import com.javaweb.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,10 +77,6 @@ public class ProductServiceImpl implements ProductService {
         return productDTO;
     }
 
-    @Override
-    public Product getProductById(Long id) {
-        return productRepository.findById(id).get();
-    }
 
     public void deleteProductImage(String fileName) {
         String dir = appConfig.getImgDir();

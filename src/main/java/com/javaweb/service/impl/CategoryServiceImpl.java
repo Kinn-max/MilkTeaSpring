@@ -69,12 +69,6 @@ public class CategoryServiceImpl implements CategoryService {
         categoryRepository.delete(category);
     }
 
-    @Override
-    public Category findCategoryById(Long id) {
-        Category category = categoryRepository.findById(id).get();
-        return category;
-    }
-
     public void deleteCategoryImage(String fileName) {
         String dir = appConfig.getImgDir();
         Path path = Paths.get(dir + File.separator + fileName);

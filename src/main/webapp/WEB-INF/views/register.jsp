@@ -5,7 +5,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Đăng nhập</title>
+    <title>Đăng ký</title>
 </head>
 <body>
 <div class="backgroud__sigIn-shop">
@@ -19,36 +19,38 @@
             <h3>Xin chào,</h3>
             <p>Đăng nhập hoặc tạo một tài khoản để trải nghiệm tốt hơn! </p>
             <p class="title_signIn ">Đăng ký</p>
-            <form class="form" action=""  method="post">
+            <form:form class="form" modelAttribute="userRequireDTO" id="formRegister"  method="post">
                 <div class="input-group inpu_bottom">
                     <label for="fullname">Họ và tên</label>
-                    <input class="checkRed" type="text" name="fullname" id="fullname" placeholder="">
+                    <form:input  type="text" path="fullName" class="checkRed" id="fullname" value="${userRequireDTO.fullName}" />
+<%--                    <input class="checkRed" type="text" name="fullname" id="fullname" placeholder="">--%>
                     <span class="formEr"></span>
                 </div>
                 <div class="input-group inpu_bottom">
                     <label for="username">Tên đăng nhập</label>
-                    <input class="checkRed" type="text" name="username" id="username" placeholder="">
+                    <form:input  type="text" path="nameUser" class="checkRed" id="username" value="${userRequireDTO.nameUser}" />
+<%--                    <input class="checkRed" type="text" name="username" id="username" placeholder="">--%>
                     <span class="formEr"></span>
                 </div>
                 <div class="input-group inpu_bottom">
                     <label for="email">Email</label>
-                    <input type="text" name="Email" id="email" placeholder="">
+                     <form:input  type="text" path="email" class="checkRed" id="email" value="${userRequireDTO.email}" />
                     <span class="formEr"></span>
 
                 </div>
                 <div class="input-group inpu_bottom">
                     <label for="password">Mật khẩu</label>
-                    <input type="password" name="password" id="password" placeholder="">
+                    <form:input  type="password" path="passWord" class="checkRed" id="password" value="${userRequireDTO.passWord}" />
                     <span class="formEr"></span>
                 </div>
                 <div class="input-group inpu_bottom">
                     <label for="confirm_password">Nhập lại mật khẩu</label>
-                    <input type="password" name="confirm_password" id="confirm_password" placeholder="">
+                    <form:input  type="password"  path="confirmPassword" class="checkRed" id="confirm_password" value="${userRequireDTO.confirmPassword}" />
                     <span class="formEr"></span>
 
                 </div>
-                <button class="sign" name="submit_up">Đăng ký</button>
-            </form>
+                <button class="sign" name="submit_up" id="addRegister">Đăng ký</button>
+            </form:form>
             <div class="social-message">
                 <div class="line"></div>
                 <p class="message">Login with social accounts</p>
@@ -87,14 +89,44 @@
         </div>
 
     </div>
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        var notification__errol = document.querySelector('.notification__errol')
-        function hideNotification() {
-            notification__errol.style.display = 'none';
+        function addRegister() {
+            var data = {};
+            var formData = $('#formRegister').serializeArray();
+            $.each(formData,function(i,v){
+                    data[""+v.name+""] = v.value
+            })
+            if(data['passWord'] == data['confirmPassword']){
+                callApiSaveUser(data)
+            }else {
+                window.location.href ="/register"
+            }
         }
-        // Ẩn thông báo sau 2 giây
-        setTimeout(hideNotification, 3000);
+
+        function callApiSaveUser(data) {
+            $.ajax({
+                type: "Post",
+                url : "/api/register",
+                data: JSON.stringify(data),
+                contentType: "application/json", // định dạng khi gửi đến máy chủ
+                dataType: "JSON", // khi be gửi về
+                success: function(respond){
+                    console.log("Success")
+                },
+                error: function(respond){
+                    console.log("error")
+                    console.log(respond)
+                }
+            })
+        }
+
+        $(document).ready(function() {
+            $('#addRegister').click(function(event) {
+                event.preventDefault();
+                addRegister();
+            });
+        });
 
     </script>
 </div>

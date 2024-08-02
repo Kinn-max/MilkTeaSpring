@@ -1,5 +1,6 @@
 package com.javaweb.service.impl;
 
+import com.javaweb.converter.ToppingCoverter;
 import com.javaweb.dto.ToppingDTO;
 import com.javaweb.entity.Topping;
 import com.javaweb.repository.ToppingRepository;
@@ -17,11 +18,17 @@ public class ToppingServiceImpl implements ToppingService {
     @Autowired
     private ToppingRepository toppingRepository;
     @Autowired
+    private ToppingCoverter toppingCoverter;
+    @Autowired
     private ModelMapper modelMapper;
     @Override
-    public List<Topping> getAllTopping() {
+    public List<ToppingDTO> getAllTopping() {
         List<Topping> toppings = toppingRepository.findAll();
-        return toppings;
+        List<ToppingDTO> toppingDTOList = new ArrayList<>();
+        for (Topping topping : toppings) {
+            toppingDTOList.add(toppingCoverter.covertToDTO(topping));
+        }
+        return toppingDTOList;
     }
 
     @Override
@@ -38,7 +45,9 @@ public class ToppingServiceImpl implements ToppingService {
     }
 
     @Override
-    public Topping findToppingById(Long id) {
-        return toppingRepository.findById(id).get();
+    public ToppingDTO findToppingById(Long id) {
+        Topping topping = toppingRepository.findById(id).get();
+        ToppingDTO toppingDTO = modelMapper.map(topping, ToppingDTO.class);
+        return toppingDTO;
     }
 }

@@ -9,10 +9,10 @@ import java.util.List;
 @Setter
 public class OrderDTO {
     private Long id;
-    private int quantity;//
-    private double currentPrice;//
-    private String sugar;//
+    private int quantity;
+    private double currentPrice;
+    private String sugar;
     private double totalCurrent;
-    private List<Long> toppingList;//
-    private Long idProduct;//
+    private List<Long> toppingList;
+    private Long idProduct;
 }

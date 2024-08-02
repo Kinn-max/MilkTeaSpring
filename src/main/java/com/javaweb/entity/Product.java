@@ -3,6 +3,8 @@ package com.javaweb.entity;
 import javax.persistence.*;
 import lombok.*;
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Setter
 @Getter
@@ -15,9 +17,11 @@ public class Product {
     @Column(name = "name")
     private String name;
 
-    @OneToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE}, orphanRemoval = true)
-    @JoinColumn(name = "id_price")
-    private PriceOfSize priceOfSize;
+    @Column(name = "size_l")
+    private Double priceL;
+
+    @Column(name = "size_m")
+    private Double priceM;
 
     @Column(name = "image")
     private String image;
@@ -26,7 +30,7 @@ public class Product {
     @JoinColumn(name = "category_id")
     private Category category;
 
-    @OneToOne(mappedBy = "product")
-    private Order order;
+    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
+    private List<Order> orderList = new ArrayList<>();
 
 }

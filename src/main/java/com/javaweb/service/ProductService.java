@@ -11,5 +11,4 @@ public interface ProductService {
     void saveProduct(ProductDTO productDTO, MultipartFile file);
     void deleteProduct(Long id);
     ProductDTO findProductById(Long id);
-    Product getProductById(Long id);
 }

@@ -34,6 +34,12 @@ public class DetailOrder extends DateOfCommon{
     private String note;
     @Column(name = "delivery")
     private String delivery;
+    @Column(name = "receiver")
+    private String receiver;
+    @Column(name = "phone_receiver")
+    private String phoneReceiver;
+    @Column(name = "address_receiver")
+    private String addressReceiver;
 
     // mapping
     @OneToMany(mappedBy = "detailOrder", fetch = FetchType.LAZY,

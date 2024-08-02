@@ -15,4 +15,5 @@ public interface UserService {
     void deleteUser(Long id);
     User createUser(UserRequireDTO userRequireDTO) throws PermissionDenyException;
     String login(String nameUser, String password) throws Exception;
+    UserResponseDTO getNameUserAndActive(String s);
 }

@@ -33,12 +33,6 @@ public class UserServiceImpl implements UserService {
     private UserConverter userConverter;
     @Autowired
     private RoleRepository roleRepository;
-//    @Autowired
-//    private PasswordEncoder passwordEncoder;
-//    @Autowired
-//    private AuthenticationManager authenticationManager;
-//    @Autowired
-//    private JwtTokenUtil jwtTokenUtil;
 
     @Override
     public List<UserResponseDTO> getAllUser() {
@@ -121,5 +115,12 @@ public class UserServiceImpl implements UserService {
 //        authenticationManager.authenticate(authenticationToken);
 //        return jwtTokenUtil.generateToken(existingUser);
         return null;
+    }
+
+    @Override
+    public UserResponseDTO getNameUserAndActive(String s) {
+        User user= userRepository.findNameUserAndActive(s);
+        UserResponseDTO userResponseDTO =userConverter.toUserResponseDTO(user);
+        return userResponseDTO;
     }
 }

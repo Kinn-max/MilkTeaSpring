@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController(value = "apiOfAll")
-@RequestMapping("api")
+@RequestMapping("/api")
 public class UserAPI {
     @Autowired
     private UserService userService;
@@ -41,15 +41,5 @@ public class UserAPI {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage()); //rule 5
         }
     }
-    @PostMapping("/login")
-    public ResponseEntity<String> login(
-            @Valid @RequestBody UserLoginDTO userLoginDTO) {
-        try {
-            String token = userService.login(userLoginDTO.getUserName(), userLoginDTO.getPassWord());
-            // Trả về token trong response
-            return ResponseEntity.ok(token);
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
-    }
+
 }

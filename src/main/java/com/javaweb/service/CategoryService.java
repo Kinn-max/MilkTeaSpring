@@ -10,5 +10,4 @@ public interface CategoryService {
     List<CategoryDTO> findAllCategory();
     void saveCategory(String nameCategory, MultipartFile file);
     void deleteCategory(Long id);
-    Category findCategoryById(Long id);
 }

@@ -176,6 +176,7 @@
     //id:formOrder
     //id:id submit
     //buyNow,addCart
+    var notifyAmongValue = "";
     function addCart(){
         var data = {};
         var selectedSugar = $("input[name='sugar']:checked").val();

@@ -1,9 +1,17 @@
 package com.javaweb.converter;
 
+import com.javaweb.Security.utils.SecurityUtils;
+import com.javaweb.constants.SystemConstant;
+import com.javaweb.dto.MyUserDetail;
 import com.javaweb.dto.OrderDTO;
+import com.javaweb.dto.OrderResponseDTO;
+import com.javaweb.dto.ProductDTO;
 import com.javaweb.entity.Order;
 import com.javaweb.entity.Product;
 import com.javaweb.entity.Topping;
+import com.javaweb.entity.User;
+import com.javaweb.repository.ProductRepository;
+import com.javaweb.repository.UserRepository;
 import com.javaweb.service.OrderService;
 import com.javaweb.service.ProductService;
 import com.javaweb.service.ToppingService;
@@ -21,22 +29,40 @@ public class OrderConverter {
     private UserService userService;
 
     @Autowired
-    private ToppingService toppingService;
-
+    private UserRepository userRepository;
     @Autowired
-    private ProductService productService;
+    private ProductConverter productConverter;
     @Autowired
     private ModelMapper modelMapper;
+    @Autowired
+    private ProductRepository productRepository;
+
     public Order toOrder(OrderDTO orderDTO){
         Order order = modelMapper.map(orderDTO, Order.class);
-        List<Topping> toppingList = new ArrayList<>();
-        for(Long id : orderDTO.getToppingList()){
-            Topping topping = toppingService.findToppingById(id);
-            toppingList.add(topping);
-        }
-        Product product = productService.getProductById(orderDTO.getIdProduct());
+        User user =userRepository.findById(SecurityUtils.getMyUser().getId()).get();
+        Product product = productRepository.findById(orderDTO.getIdProduct()).get();
         order.setProduct(product);
-        order.setToppingList(toppingList);
+        order.setUserId(user);
+        order.setStatus(false);
         return order;
+    }
+    public OrderResponseDTO toOrderResponseDTO(Order order){
+        OrderResponseDTO orderResponseDTO = modelMapper.map(order, OrderResponseDTO.class);
+        List<Topping> listTopping = order.getToppingList();
+        String nameTopping = "";
+        if (listTopping.size() > 0){
+            for (int i = 0; i < listTopping.size(); i++) {
+                nameTopping += listTopping.get(i).getName();
+                if (i < listTopping.size() - 1) {
+                    nameTopping += ",";
+                }
+            }
+        }else {
+            nameTopping = "Không có!";
+        }
+        orderResponseDTO.setNameTopping(nameTopping);
+        ProductDTO productDTO = productConverter.toProductDTO(order.getProduct());
+        orderResponseDTO.setProduct(productDTO);
+        return orderResponseDTO;
     }
 }

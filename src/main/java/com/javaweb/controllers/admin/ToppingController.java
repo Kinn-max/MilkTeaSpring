@@ -23,7 +23,7 @@ public class ToppingController {
     @RequestMapping(value = "/admin/topping-list", method = RequestMethod.GET)
     public ModelAndView toppingList(@ModelAttribute ToppingDTO toppingDTO) {
         ModelAndView mav = new ModelAndView("admin/topping-list");
-        List<Topping> toppingList = toppingService.getAllTopping();
+        List<ToppingDTO> toppingList = toppingService.getAllTopping();
         mav.addObject("toppingList", toppingList);
         mav.addObject("toppingDTO", toppingDTO);
         return mav;

@@ -1,25 +1,25 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@include file="/common/taglib.jsp"%>	
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Đăng nhập</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Đăng nhập</title>
 </head>
 <body>
+
 <div class="backgroud__sigIn-shop">
 	<div class="class__signIn-shopp">
 		<video  autoplay loop muted class="sigIn-shop--mp4">
 			<source type="video/mp4" asp-append-version="true" src="mp4/intro_sign_In.mp4" >
 		</video>
 	</div>
-	<div class="form-container form__signUp--shopp" >
+	<div class="form-container form__signUp--shopp">
 		<div class="heading__title">
 			<h3>Xin chào,</h3>
-			<p>Đăng nhập hoặc tạo một tài khoản để trải nghiệm tốt hơn! </p>
+			<p>Đăng nhập hoặc tạo một tài khoản để trải nghiệm tốt hơn!</p>
 			<p class="title_signIn">Đăng nhập</p>
-			<form class="form" action=""  method="post">
+			<form class="form" action="${pageContext.request.contextPath}/j_spring_security_check"  method="POST">
 				<div class="input-group inpu_bottom">
 					<label for="username">Tên người dùng</label>
 					<input type="text" name="username" id="username" placeholder="">
@@ -28,7 +28,7 @@
 					<label for="password">Mật khẩu</label>
 					<input type="password" name="password" id="password" placeholder="">
 				</div>
-				<button class="sign" name="submid">Đăng Nhập</button>
+				<button class="sign" type="submit">Đăng Nhập</button>
 			</form>
 			<div class="social-message">
 				<div class="line"></div>
@@ -52,32 +52,24 @@
 					</svg>
 				</button>
 			</div>
-			<p class="signup">Don't have an account?
-				<a rel="noopener noreferrer" href="register" class="" >Sign up</a>
+			<p class="signup">
+				<a rel="noopener noreferrer" href="register" class="" >Register</a>
 			</p>
 		</div>
 		<div class="logo__Myshopp">
 
 			<div class="logo__Myshopp--img">
-				<img src="img/the_end.jpg" alt="connect">
+				<img src="img/the_end.jpg" alt="">
 			</div>
 			<div class="maxim">
 				<h3>Mua trà sữa tại Kinn</h3>
 				<p>Ưu đãi mỗi ngày</p>
 			</div>
 		</div>
-		<script>
-
-			var notification__errol = document.querySelector('.notification__errol')
-			function hideNotification() {
-				notification__errol.style.display = 'none';
-			}
-			// Ẩn thông báo sau 2 giây
-			setTimeout(hideNotification, 3000);
-
-		</script>
-
+		</div>
 	</div>
+
 </div>
+
 </body>
 </html>
