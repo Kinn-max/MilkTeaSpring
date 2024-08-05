@@ -23,11 +23,9 @@
             </div>
             <div class="list-dentail" >
                 <ul>
-                    <a href="">
-                        <li class="list-dentail--item">Đã đặt hàng</li>
+                    <a href="/admin/order">
+                        <li class="list-dentail--item">Danh sách các đơn hàng</li>
                     </a>
-                    <li class="list-dentail--item">Đã bán</li>
-                    <li class="list-dentail--item">Đã hủy</li>
                 </ul>
             </div>
         </li>
@@ -65,16 +63,6 @@
                         <li class="list-dentail--item">Thêm sản phẩm</li>
                     </a>
                 </ul>
-            </div>
-        </li>
-        <li class="category_list-item menu_ts">
-            <div class="show_category-both">
-                <a href="/admin/order">
-                    <div class="both_icon">
-                        <i class="fa-solid fa-square"></i>
-                        <p>Order</p>
-                    </div>
-                </a>
             </div>
         </li>
         <li class="category_list-item menu_ts">

@@ -400,3 +400,36 @@ input:checked + .slider:before {
     font-size: 1.6rem;
     padding: 0 8px;
 }
+/*phần admin home*/
+.title-name-address{
+    justify-content: space-between;
+    display: flex;
+    font-size: 1.4rem;
+    padding: 10px 0;
+}
+.content-detail-wait{
+    padding: 10px 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.15);
+    font-size: 1.4rem;
+}
+.style-ul--detail{
+    padding: 10px 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.15);
+}
+ table {
+     border-collapse: collapse;
+ }
+th, td {
+    border: none;
+    padding: 8px;
+}
+tr {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+}
+/* Tùy chọn: Đường kẻ dưới cùng của bảng */
+table {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+}
+#choseRole{
+    display: none;
+}

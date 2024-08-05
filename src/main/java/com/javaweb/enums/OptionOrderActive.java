@@ -6,8 +6,12 @@ import java.util.TreeMap;
 public enum OptionOrderActive {
     WAIT_FOR_CONFIRM("Đợi xác nhận"),
     DELIVERING("Đang giao hàng"),
-    CANCELLED("Hủy đơn");
+    CANCELLED("Hủy đơn hàng"),
+    DELIVERED("Đã giao hàng");
     private  final String optionOrder;
+    public String getOptionOrder() {
+        return optionOrder;
+    }
     OptionOrderActive(String optionOrder) {
         this.optionOrder = optionOrder;
     }

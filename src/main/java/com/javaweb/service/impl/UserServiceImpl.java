@@ -123,4 +123,15 @@ public class UserServiceImpl implements UserService {
         UserResponseDTO userResponseDTO =userConverter.toUserResponseDTO(user);
         return userResponseDTO;
     }
+
+    @Override
+    public void saveRoleUser(Long id, String roleName) {
+        User user = userRepository.findById(id).get();
+        Role role = roleRepository.findByName(roleName);
+        if (role != null){
+            user.setRole(role);
+            user.setStatus(roleName);
+            userRepository.save(user);
+        }
+    }
 }

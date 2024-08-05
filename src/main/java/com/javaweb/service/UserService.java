@@ -16,4 +16,5 @@ public interface UserService {
     User createUser(UserRequireDTO userRequireDTO) throws PermissionDenyException;
     String login(String nameUser, String password) throws Exception;
     UserResponseDTO getNameUserAndActive(String s);
+    void saveRoleUser(Long id, String roleName);
 }

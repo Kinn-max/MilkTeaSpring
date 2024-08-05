@@ -3,6 +3,8 @@ package com.javaweb.dto;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
@@ -25,6 +27,8 @@ public class DetailOrderDTO {
     private String payment;
     private String note;
     private String delivery;
+    private Date createdDate;
+    private String createdBy;
     @NotBlank(message = "Người nhận không thể để trống")
     private String receiver;
     @NotBlank(message = "Số điện thoại người nhận thể để trống")

@@ -21,7 +21,7 @@ public class Topping {
     @Column(name = "price")
     private double price;
 
-    @ManyToMany
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "order_topping",
                 joinColumns = @JoinColumn(name = "topping_id",nullable = false),
                 inverseJoinColumns = @JoinColumn(name = "order_id", nullable = false))

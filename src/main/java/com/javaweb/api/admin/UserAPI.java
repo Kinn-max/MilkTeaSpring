@@ -11,8 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Map;
 
 @RestController(value = "userApiOfAdmin")
 @Transactional
@@ -44,6 +42,11 @@ public class UserAPI {
     public  ResponseEntity<String>  deleteUser(@PathVariable("id") Long id){
         userService.deleteUser(id);
         return FormResponse.contentOk("success","Xóa thành công User!");
+    }
+    @PostMapping("/role/{id}/{name}")
+    public  ResponseEntity<String>  saveRoleUser(@PathVariable("id") Long id,@PathVariable("name") String roleName){
+        userService.saveRoleUser(id,roleName);
+        return FormResponse.contentOk("success","Cập nhật trạng thái tài khoản thành công");
     }
 
 

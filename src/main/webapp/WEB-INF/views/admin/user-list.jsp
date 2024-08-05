@@ -16,6 +16,27 @@
     <span class="text-notify_among"></span>
     <div class="control_notify"></div>
 </div>
+<div class="center-role--chose" id="choseRole">
+    <div class="center_detail-option">
+        <div class="both-context" style="font-size: 2rem; ">
+            <div class="name-option">
+                Tùy chọn phân quyền
+            </div>
+            <div class="close-role">
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+        </div>
+        <div class="table_add width-add-option" >
+            <select name="roleOption" id="roleOption" onchange="onRoleChange()">
+                <c:forEach var="entry" items="${roleOption}">
+                    <option value="${entry.key}">${entry.value}
+                    </option>
+                </c:forEach>
+            </select>
+            <input type="hidden" id="idUser" name="idUser" >
+        </div>
+    </div>
+</div>
 <div class="center_product " id="detail-options">
     <div class="center_product-dentail center_product-dentail-ad">
         <div class="both-context" style="font-size: 2rem; ">
@@ -96,7 +117,7 @@
                             <div class="option-user--fix" title="Chỉnh sửa" onclick="nextPage(${item.id})">
                                 <i class="fa-solid fa-pen-to-square"></i>
                             </div>
-                            <div class="option-user-role" title="Ủy quyền">
+                           <div class="option-user-role" title="Ủy quyền" onclick="showOptionRole(${item.id}, '${item.status}')">
                                 <i class="fa-solid fa-check"></i>
                             </div>
                             <div class="option-user-delete" title="Xóa" onclick="deleteUser(${item.id})">
@@ -127,6 +148,32 @@
 </div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
+    //role
+    function showOptionRole(id, status){
+        document.getElementById("idUser").value = id;
+        var selectElement = document.getElementById('roleOption');
+        selectElement.value = status
+        var  choseRole = document.getElementById("choseRole")
+        choseRole.style.display = "flex"
+    }
+    function onRoleChange(){
+        var roleOption = document.getElementById("roleOption").value
+        var  idUser = document.getElementById("idUser").value
+        $.ajax({
+            type: "POST",
+            url: "http://localhost:8082/api/user/role/" + idUser+"/"+roleOption,
+            contentType: "application/json",
+            dataType: "JSON",
+            success: function (response) {
+                notifyAmongValue = response.message
+                updateNotification()
+            },
+            error: function (response) {
+                console.log("error");
+                console.log(response);
+            }
+        })
+    }
     // active account
     document.addEventListener('DOMContentLoaded', function() {
         const checkActive = document.querySelectorAll(".checkActive");
@@ -139,7 +186,7 @@
 
                 $.ajax({
                     type: "POST",
-                    url: "/api/user/" + userId + "/" + status,
+                    url: "http://localhost:8082/api/user/" + userId + "/" + status,
                     success: function(response) {
                         notifyAmongValue += response.message + "";
                         updateNotification();

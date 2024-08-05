@@ -129,7 +129,7 @@
     justify-content: left;
 }
 
-.center_product{
+.center_product,.center-role--chose{
     position: fixed;
     display: flex;
     align-items: center;
@@ -141,7 +141,7 @@
     transform: translateY(-80px);
     display: none;
 }
-.center_product-dentail{
+.center_product-dentail,.center_detail-option{
     background-color: #ffffff;
     padding: 20px;
     border-radius: 10px;

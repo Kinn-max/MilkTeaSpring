@@ -4,6 +4,7 @@ import com.javaweb.api.admin.UserAPI;
 import com.javaweb.dto.UserRequireDTO;
 import com.javaweb.dto.UserResponseDTO;
 import com.javaweb.entity.User;
+import com.javaweb.enums.RoleOption;
 import com.javaweb.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,6 +28,7 @@ public class UserController {
         List<UserResponseDTO> listUser = userService.getAllUser();
         mav.addObject("userResponse", userResponseDTO);
         mav.addObject("listUser", listUser);
+        mav.addObject("roleOption", RoleOption.type());
         return mav;
     }
     @RequestMapping(value = "/admin/user-edit-{id}", method = RequestMethod.GET)
@@ -36,6 +38,7 @@ public class UserController {
         UserResponseDTO userResponseDTO = userAPI.findUserById(id);
         mav.addObject("userResponse", userResponseDTO);
         mav.addObject("listUser", listUser);
+        mav.addObject("roleOption", RoleOption.type());
         return mav;
     }
 }
